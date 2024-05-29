@@ -63,7 +63,7 @@
     </header>
     <nav>
         <div class="nav-center">
-            <a href="index.jsp">Inicio</a>
+            <a href="indexA.jsp">Inicio</a>
             <a href="ControladorClientes?accion=listarClientes">Listar Clientes</a>
             <a href="ControladorEmpleados?accion=listarEmpleados">Listar Empleados</a>
             <a href="ControladorProductos?accion=listarProductos">Productos</a>
