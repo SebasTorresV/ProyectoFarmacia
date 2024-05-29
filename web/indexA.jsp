@@ -67,12 +67,10 @@
         <h1>Bienvenido a Nuestra Farmacia</h1>
     </header>
     <nav>
-        <a href="index.jsp">Inicio</a>
+        <a href="indexA.jsp">Inicio</a>
         <a href="ControladorClientes?accion=listarClientes">Listar Clientes</a>
         <a href="ControladorEmpleados?accion=listarEmpleados">Listar Empleados</a>
         <a href="ControladorProductos?accion=listarProductos">Productos</a>
-        <a href="consultas.jsp">Consultas</a>
-        <a href="#">Contáctanos</a>
     </nav>
     <div class="container">
         <h1>Bienvenido a Nuestra Página Principal</h1>

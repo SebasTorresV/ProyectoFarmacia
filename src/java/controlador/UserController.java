@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import modelo.Clientes;
-import modeloDAD.UserDAO;
+import modeloDAD.ClientesDAO;
 
 public class UserController extends HttpServlet {
 
@@ -16,7 +16,7 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
-        UserDAO dao = new UserDAO();
+        ClientesDAO dao = new ClientesDAO();
 
         if ("login".equals(accion)) {
             String correo = request.getParameter("correo");
@@ -25,7 +25,13 @@ public class UserController extends HttpServlet {
             if (cli != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", cli);
-                response.sendRedirect("index.jsp");
+
+                // Verificar el rol del usuario
+                if ("admin".equals(cli.getRol())) {
+                    response.sendRedirect("indexA.jsp");
+                } else {
+                    response.sendRedirect("index.jsp");
+                }
             } else {
                 request.setAttribute("error", "Correo o contraseña incorrectos");
                 RequestDispatcher rd = request.getRequestDispatcher("vistas/login.jsp");
@@ -39,6 +45,7 @@ public class UserController extends HttpServlet {
             cli.setDireccion(request.getParameter("direccion"));
             cli.setCorreo(request.getParameter("correo"));
             cli.setPassword(request.getParameter("password"));
+            cli.setRol("user"); // Asegurarse de establecer un rol por defecto
 
             dao.register(cli);
             response.sendRedirect("vistas/login.jsp");

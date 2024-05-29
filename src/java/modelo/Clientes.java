@@ -8,6 +8,7 @@ public class Clientes {
     private String direccion;
     private String correo;
     private String password;
+    private String rol;
 
     // Getters y Setters
     public int getId() {
@@ -64,5 +65,13 @@ public class Clientes {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

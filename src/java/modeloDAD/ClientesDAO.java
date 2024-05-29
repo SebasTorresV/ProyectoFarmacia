@@ -26,7 +26,7 @@ public class ClientesDAO {
                 cli.setId(rs.getInt("id"));
                 cli.setNombre(rs.getString("nombre"));
                 cli.setApellido(rs.getString("apellido"));
-                cli.setTelefono(rs.getString("telefono")); // Cambiado a String
+                cli.setTelefono(rs.getString("telefono"));
                 cli.setDireccion(rs.getString("direccion"));
                 cli.setCorreo(rs.getString("correo"));
                 list.add(cli);
@@ -49,7 +49,7 @@ public class ClientesDAO {
                 cli.setId(rs.getInt("id"));
                 cli.setNombre(rs.getString("nombre"));
                 cli.setApellido(rs.getString("apellido"));
-                cli.setTelefono(rs.getString("telefono")); // Cambiado a String
+                cli.setTelefono(rs.getString("telefono"));
                 cli.setDireccion(rs.getString("direccion"));
                 cli.setCorreo(rs.getString("correo"));
             }
@@ -60,16 +60,17 @@ public class ClientesDAO {
     }
 
     public boolean addClientes(Clientes cli) {
-        String sql = "INSERT INTO clientes (id, nombre, apellido, telefono, direccion, correo) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes (nombre, apellido, telefono, direccion, correo, password, rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, cli.getId());
-            ps.setString(2, cli.getNombre());
-            ps.setString(3, cli.getApellido());
-            ps.setString(4, cli.getTelefono()); // Cambiado a String
-            ps.setString(5, cli.getDireccion());
-            ps.setString(6, cli.getCorreo());
+            ps.setString(1, cli.getNombre());
+            ps.setString(2, cli.getApellido());
+            ps.setString(3, cli.getTelefono());
+            ps.setString(4, cli.getDireccion());
+            ps.setString(5, cli.getCorreo());
+            ps.setString(6, cli.getPassword());
+            ps.setString(7, cli.getRol());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,16 +80,18 @@ public class ClientesDAO {
     }
 
     public boolean editClientes(Clientes cli) {
-        String sql = "UPDATE clientes SET nombre=?, apellido=?, telefono=?, direccion=?, correo=? WHERE id=?";
+        String sql = "UPDATE clientes SET nombre=?, apellido=?, telefono=?, direccion=?, correo=?, password=?, rol=? WHERE id=?";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setString(1, cli.getNombre());
             ps.setString(2, cli.getApellido());
-            ps.setString(3, cli.getTelefono()); // Cambiado a String
+            ps.setString(3, cli.getTelefono());
             ps.setString(4, cli.getDireccion());
             ps.setString(5, cli.getCorreo());
-            ps.setInt(6, cli.getId());
+            ps.setString(6, cli.getPassword());
+            ps.setString(7, cli.getRol());
+            ps.setInt(8, cli.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,6 +106,52 @@ public class ClientesDAO {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public Clientes login(String correo, String password) {
+        Clientes cli = null;
+        String sql = "SELECT * FROM clientes WHERE correo = ? AND password = ?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, correo);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                cli = new Clientes();
+                cli.setId(rs.getInt("id"));
+                cli.setNombre(rs.getString("nombre"));
+                cli.setApellido(rs.getString("apellido"));
+                cli.setTelefono(rs.getString("telefono"));
+                cli.setDireccion(rs.getString("direccion"));
+                cli.setCorreo(rs.getString("correo"));
+                cli.setPassword(rs.getString("password"));
+                cli.setRol(rs.getString("rol"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cli;
+    }
+
+    public boolean register(Clientes cli) {
+        String sql = "INSERT INTO clientes (nombre, apellido, telefono, direccion, correo, password, rol) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cli.getNombre());
+            ps.setString(2, cli.getApellido());
+            ps.setString(3, cli.getTelefono());
+            ps.setString(4, cli.getDireccion());
+            ps.setString(5, cli.getCorreo());
+            ps.setString(6, cli.getPassword());
+            ps.setString(7, cli.getRol());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
