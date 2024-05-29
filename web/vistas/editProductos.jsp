@@ -84,13 +84,13 @@
                     <h1 class="mb-4 text-center">Editar Producto</h1>
                     <%
                         ProductosDAO dao = new ProductosDAO();
-                        int id = Integer.parseInt(request.getAttribute("idProd").toString());
-                        Productos pro = dao.getProducto(id);
+                        int id = Integer.parseInt(request.getParameter("id"));
+                        Productos pro = dao.getProductoById(id);
                     %>
                     <form action="ControladorProductos" method="POST">
                         <div class="mb-3">
                             <label for="txtid" class="form-label">ID:</label>
-                            <input class="form-control" type="text" id="txtid" name="txtid" value="<%= pro.getIdproductos() %>" readonly>
+                            <input class="form-control" type="text" id="txtid" name="txtid" value="<%= pro.getId() %>" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="txtNombre" class="form-label">Nombre:</label>

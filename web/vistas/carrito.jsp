@@ -1,6 +1,6 @@
 <%@page import="modelo.Productos"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -56,7 +56,7 @@
         <h1>Carrito de Compras</h1>
     </header>
     <nav>
-        <a href="../index.jsp">Inicio</a>
+        <a href="index.jsp">Inicio</a>
         <a href="CarritoController?accion=agregarProductos" class="btn btn-primary">Agregar Productos</a>
     </nav>
     <div class="container">

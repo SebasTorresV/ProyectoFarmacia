@@ -52,7 +52,7 @@ public class UserController extends HttpServlet {
         } else if ("logout".equals(accion)) {
             HttpSession session = request.getSession();
             session.invalidate();
-            response.sendRedirect("vistas/login.jsp");
+            response.sendRedirect("index.jsp"); // Redirigir a index.jsp después de cerrar sesión
         } else if ("loginPage".equals(accion)) {
             RequestDispatcher rd = request.getRequestDispatcher("vistas/login.jsp");
             rd.forward(request, response);
