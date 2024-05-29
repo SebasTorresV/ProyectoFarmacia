@@ -57,7 +57,7 @@
         <h1>Listado de Productos</h1>
     </header>
     <nav>
-        <a href="../index.jsp">Inicio</a>
+        <a href="index.jsp">Inicio</a>
         <a href="CarritoController?accion=verCarrito" class="btn btn-primary">Ver Carrito</a>
     </nav>
     <div class="container">

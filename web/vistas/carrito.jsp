@@ -56,7 +56,7 @@
         <h1>Carrito de Compras</h1>
     </header>
     <nav>
-        <a href="index.jsp">Inicio</a>
+        <a href="indexA.jsp">Inicio</a>
         <a href="CarritoController?accion=agregarProductos" class="btn btn-primary">Agregar Productos</a>
     </nav>
     <div class="container">

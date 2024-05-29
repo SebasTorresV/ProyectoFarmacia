@@ -67,8 +67,6 @@
             <a href="ControladorClientes?accion=listarClientes">Listar Clientes</a>
             <a href="ControladorEmpleados?accion=listarEmpleados">Listar Empleados</a>
             <a href="ControladorProductos?accion=listarProductos">Productos</a>
-            <a href="#">Consultas</a>
-            <a href="#">Contáctanos</a>
         </div>
     </nav>
     <div class="container mt-5">
